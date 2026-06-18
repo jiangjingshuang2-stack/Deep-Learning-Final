@@ -1,0 +1,3 @@
+Object A test: final_iter=7000, L1=0.009426, PSNR=25.973
+Object A train: final_iter=7000, L1=0.004780, PSNR=31.813
+Garden train: final_iter=30000, L1=0.020381, PSNR=30.037

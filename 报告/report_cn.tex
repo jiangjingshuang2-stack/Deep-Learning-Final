@@ -96,6 +96,36 @@ garden 3DGS & Adam, L1 + D-SSIM & iter=30000, GPU=2 & \texttt{garden\_3dgs\_trai
 \end{tabular}
 \end{table}
 
+\begin{table}[h]
+\centering
+\caption{更详细的网络、训练与评价设置}
+\begin{tabular}{llllll}
+\toprule
+项目 & Network Architecture & Batch Size & Learning Rate & Epochs/Steps & 评价指标 \\
+\midrule
+A & 3D Gaussian, SH color & 1 view/iter & 3DGS 默认调度 & 7000 iter & L1, PSNR \\
+B & threestudio NeRF/mesh export & 1 view/iter & threestudio 默认 Adam & 5000 steps & SDS loss, 渲染检查 \\
+C & Zero123 guidance + 3D field & 1 view/iter & threestudio 默认 Adam & 600 steps & guidance loss, 渲染检查 \\
+garden & 3D Gaussian, SH color & 1 view/iter & 3DGS 默认调度 & 30000 iter & L1, PSNR \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption{关键评价指标}
+\begin{tabular}{llll}
+\toprule
+项目 & Split & L1 $\downarrow$ & PSNR $\uparrow$ \\
+\midrule
+A 3DGS & test @ 7000 & 0.00943 & 25.97 \\
+A 3DGS & train @ 7000 & 0.00478 & 31.81 \\
+garden 3DGS & train @ 30000 & 0.02038 & 30.04 \\
+C Zero123 & train @ 600 & 2.30 & -- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
 \section{实验结果}
 \begin{figure}[h]
 \centering
@@ -107,6 +137,12 @@ garden 3DGS & Adam, L1 + D-SSIM & iter=30000, GPU=2 & \texttt{garden\_3dgs\_trai
 \centering
 \includegraphics[width=0.85\linewidth]{figures/loss_curves_all.png}
 \caption{由保存日志解析得到的训练曲线。B 的控制台日志未保存标量 loss，完整标量以 W\&B run 为准。}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.85\linewidth]{figures/validation_metrics_3dgs.png}
+\caption{验证/评价指标曲线。Object A 含 train/test 的 L1 与 PSNR，garden 日志记录 train L1 与 PSNR。B/C 的生成式资产主要以 W\&B 中的 guidance loss 与导出渲染进行检查。}
 \end{figure}
 
 \begin{figure}[h]

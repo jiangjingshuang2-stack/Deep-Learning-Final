@@ -140,6 +140,34 @@ python code/composite_bc_world_static_v2.py
 videos/final_ABC_garden_world_static_v2.mp4
 ```
 
+## 测试与导出命令
+
+Object A / garden 的 3DGS 测试渲染：
+
+```bash
+cd /root/HW3_task1/third_party/gaussian-splatting
+CUDA_VISIBLE_DEVICES=2 python render.py \
+  -m /root/HW3_task1/data/objectA_rot90_recon_0612_relaxed_fullframe_pinhole/gs_eval_7000 \
+  --iteration 7000
+
+CUDA_VISIBLE_DEVICES=2 python render.py \
+  -m /root/HW3_task1/data/background/gs/garden \
+  --iteration 30000
+```
+
+Object B / C 的 threestudio 测试渲染与 mesh 导出：
+
+```bash
+cd /root/HW3_task1/third_party/threestudio
+CUDA_VISIBLE_DEVICES=3 python launch.py \
+  --config outputs/objectB_dreamfusion_sd15_gpu3_5k_v3/Phase1/configs/parsed.yaml \
+  --test --gpu 0 resume=outputs/objectB_dreamfusion_sd15_gpu3_5k_v3/Phase1/ckpts/last.ckpt
+
+CUDA_VISIBLE_DEVICES=0 python launch.py \
+  --config outputs/objectC_sunscreen_zero123_0611_gpu0/Phase1/configs/parsed.yaml \
+  --test --gpu 0 resume=outputs/objectC_sunscreen_zero123_0611_gpu0/Phase1/ckpts/last.ckpt
+```
+
 ## 提交链接
 
 - GitHub 仓库：<https://github.com/jiangjingshuang2-stack/Deep-Learning-Final>

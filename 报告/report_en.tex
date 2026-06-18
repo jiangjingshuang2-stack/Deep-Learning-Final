@@ -90,6 +90,36 @@ garden 3DGS & Adam, L1 + D-SSIM & iter=30000, GPU=2 & \texttt{garden\_3dgs\_trai
 \end{tabular}
 \end{table}
 
+\begin{table}[h]
+\centering
+\caption{Detailed training and evaluation settings.}
+\begin{tabular}{llllll}
+\toprule
+Experiment & Network Architecture & Batch Size & Learning Rate & Epochs/Steps & Metrics \\
+\midrule
+A & 3D Gaussian, SH color & 1 view/iter & default 3DGS schedule & 7000 iter & L1, PSNR \\
+B & threestudio NeRF/mesh export & 1 view/iter & default Adam & 5000 steps & SDS loss, render check \\
+C & Zero123-guided 3D field & 1 view/iter & default Adam & 600 steps & guidance loss, render check \\
+garden & 3D Gaussian, SH color & 1 view/iter & default 3DGS schedule & 30000 iter & L1, PSNR \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption{Key evaluation metrics.}
+\begin{tabular}{llll}
+\toprule
+Experiment & Split & L1 $\downarrow$ & PSNR $\uparrow$ \\
+\midrule
+A 3DGS & test @ 7000 & 0.00943 & 25.97 \\
+A 3DGS & train @ 7000 & 0.00478 & 31.81 \\
+garden 3DGS & train @ 30000 & 0.02038 & 30.04 \\
+C Zero123 & train @ 600 & 2.30 & -- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
 \section{Results}
 \begin{figure}[h]
 \centering
@@ -101,6 +131,12 @@ garden 3DGS & Adam, L1 + D-SSIM & iter=30000, GPU=2 & \texttt{garden\_3dgs\_trai
 \centering
 \includegraphics[width=0.85\linewidth]{figures/loss_curves_all.png}
 \caption{Training curves parsed from saved logs. The console log for Object B does not contain scalar loss values; the complete scalar records are available in the W\&B run.}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.85\linewidth]{figures/validation_metrics_3dgs.png}
+\caption{Validation/evaluation curves. Object A includes train/test L1 and PSNR. The garden log records train L1 and PSNR. B/C are mainly monitored through W\&B guidance losses and exported render checks.}
 \end{figure}
 
 \begin{figure}[h]
