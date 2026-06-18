@@ -1,0 +1,4 @@
+Object A 3DGS: n=700, start=0.241306, end=0.007056, step_end=7000
+Garden 3DGS: n=501, start=0.251247, end=0.038314, step_end=30000
+Object B SDS: n=0
+Object C Zero123: n=604, start=36.700000, end=2.300000, step_end=600
