@@ -84,6 +84,7 @@ garden & 3DGS & 30000 & Mip-NeRF 360 garden & Gaussian PLY \\
 \begin{table}[H]
 \centering
 \caption{超参数与日志信息}
+\resizebox{0.96\linewidth}{!}{%
 \begin{tabular}{llll}
 \toprule
 项目 & Optimizer / Loss & 关键超参数 & 日志 \\
@@ -94,11 +95,13 @@ C Zero123 & Adam, Zero123 guidance & steps=600, GPU=0 & W\&B run \texttt{4azkmnu
 garden 3DGS & Adam, L1 + D-SSIM & iter=30000, GPU=2 & \texttt{garden\_3dgs\_train\_30k...log} \\
 \bottomrule
 \end{tabular}
+}
 \end{table}
 
 \begin{table}[H]
 \centering
 \caption{更详细的网络、训练与评价设置}
+\resizebox{0.96\linewidth}{!}{%
 \begin{tabular}{llllll}
 \toprule
 项目 & Network Architecture & Batch Size & Learning Rate & Epochs/Steps & 评价指标 \\
@@ -109,9 +112,10 @@ C & Zero123 guidance + 3D field & 1 view/iter & threestudio 默认 Adam & 600 st
 garden & 3D Gaussian, SH color & 1 view/iter & 3DGS 默认调度 & 30000 iter & L1, PSNR \\
 \bottomrule
 \end{tabular}
+}
 \end{table}
 
-\begin{table}[h]
+\begin{table}[H]
 \centering
 \caption{关键评价指标}
 \begin{tabular}{llll}
@@ -162,6 +166,7 @@ C Zero123 & train @ 600 & 2.30 & -- \\
 \begin{table}[H]
 \centering
 \caption{三种资产生成方式对比}
+\resizebox{0.96\linewidth}{!}{%
 \begin{tabular}{llll}
 \toprule
 方式 & 几何准确度 & 纹理细节 & 计算耗时与稳定性 \\
@@ -171,6 +176,7 @@ C Zero123 & train @ 600 & 2.30 & -- \\
 单图生成 C & 正面准确，背面需补全 & 输入视角纹理较可靠 & 成本较低，受单图质量影响明显 \\
 \bottomrule
 \end{tabular}
+}
 \end{table}
 
 从结果看，多视角重建最适合需要真实几何和真实纹理的资产；文本到 3D 更适合快速生成概念资产，但在本任务中 B 的龙形态在单独渲染时更明显，放入复杂背景后受尺度、视角和遮挡影响，识别性下降；单图到 3D 的 C 在正面纹理上最稳定，但背面几何不如多视角重建。

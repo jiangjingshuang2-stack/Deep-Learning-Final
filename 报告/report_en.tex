@@ -78,6 +78,7 @@ garden & 3DGS & 30000 & Mip-NeRF 360 garden & Gaussian PLY \\
 \begin{table}[H]
 \centering
 \caption{Hyperparameters and logs.}
+\resizebox{0.96\linewidth}{!}{%
 \begin{tabular}{llll}
 \toprule
 Experiment & Optimizer / Loss & Key setting & Log \\
@@ -88,11 +89,13 @@ C Zero123 & Adam, Zero123 guidance & steps=600, GPU=0 & W\&B run \texttt{4azkmnu
 garden 3DGS & Adam, L1 + D-SSIM & iter=30000, GPU=2 & \texttt{garden\_3dgs\_train\_30k...log} \\
 \bottomrule
 \end{tabular}
+}
 \end{table}
 
 \begin{table}[H]
 \centering
 \caption{Detailed training and evaluation settings.}
+\resizebox{0.96\linewidth}{!}{%
 \begin{tabular}{llllll}
 \toprule
 Experiment & Network Architecture & Batch Size & Learning Rate & Epochs/Steps & Metrics \\
@@ -103,9 +106,10 @@ C & Zero123-guided 3D field & 1 view/iter & default Adam & 600 steps & guidance 
 garden & 3D Gaussian, SH color & 1 view/iter & default 3DGS schedule & 30000 iter & L1, PSNR \\
 \bottomrule
 \end{tabular}
+}
 \end{table}
 
-\begin{table}[h]
+\begin{table}[H]
 \centering
 \caption{Key evaluation metrics.}
 \begin{tabular}{llll}
@@ -156,6 +160,7 @@ C Zero123 & train @ 600 & 2.30 & -- \\
 \begin{table}[H]
 \centering
 \caption{Comparison of the three asset generation paths.}
+\resizebox{0.96\linewidth}{!}{%
 \begin{tabular}{llll}
 \toprule
 Path & Geometry & Texture & Cost and stability \\
@@ -165,6 +170,7 @@ Text-to-3D B & Prior-driven, less constrained & Stylized, may lack real details 
 Single-image C & Accurate front, hallucinated back & Strong front-view texture & Lower cost, sensitive to image quality \\
 \bottomrule
 \end{tabular}
+}
 \end{table}
 
 The multi-view path provides the most faithful real geometry and appearance. The text-to-3D path is useful for rapid concept asset generation, but the dragon shape is easier to recognize in the standalone render than in the final garden scene because the final camera path is determined by the background. The single-image path preserves the visible appearance well but still relies on generative completion for unobserved regions.
