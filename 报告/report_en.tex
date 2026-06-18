@@ -60,7 +60,7 @@ The garden scene is trained with 3DGS from the Mip-NeRF 360 multi-view images. I
 The final pipeline uses a hybrid representation. Garden and Object A are both explicit 3D Gaussians, so Object A is filtered, normalized, transformed, and inserted into the garden world coordinate system. Object B and C are exported as textured meshes from threestudio, normalized, converted from the local generated coordinate system to the garden camera/world convention, and fixed in the same world space. Rendering first produces garden + A frames using the official 3DGS renderer. B and C are then rasterized and depth-composited with the same camera trajectory. This makes the assets world-static relative to the background during the orbit.
 
 \section{Experimental Setup}
-\begin{table}[h]
+\begin{table}[H]
 \centering
 \caption{Main experimental settings.}
 \begin{tabular}{lllll}
@@ -75,7 +75,7 @@ garden & 3DGS & 30000 & Mip-NeRF 360 garden & Gaussian PLY \\
 \end{tabular}
 \end{table}
 
-\begin{table}[h]
+\begin{table}[H]
 \centering
 \caption{Hyperparameters and logs.}
 \begin{tabular}{llll}
@@ -90,7 +90,7 @@ garden 3DGS & Adam, L1 + D-SSIM & iter=30000, GPU=2 & \texttt{garden\_3dgs\_trai
 \end{tabular}
 \end{table}
 
-\begin{table}[h]
+\begin{table}[H]
 \centering
 \caption{Detailed training and evaluation settings.}
 \begin{tabular}{llllll}
@@ -121,25 +121,25 @@ C Zero123 & train @ 600 & 2.30 & -- \\
 \end{table}
 
 \section{Results}
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
 \includegraphics[width=\linewidth]{figures/fusion_world_static_v2_contact.jpg}
 \caption{Representative frames from the final v2 fusion video. The assets and the garden background are fixed in the same world coordinate system.}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.85\linewidth]{figures/loss_curves_all.png}
 \caption{Training curves parsed from saved logs. The console log for Object B does not contain scalar loss values; the complete scalar records are available in the W\&B run.}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.85\linewidth]{figures/validation_metrics_3dgs.png}
 \caption{Validation/evaluation curves. Object A includes train/test L1 and PSNR. The garden log records train L1 and PSNR. B/C are mainly monitored through W\&B guidance losses and exported render checks.}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
 \begin{subfigure}{0.48\linewidth}
 \includegraphics[width=\linewidth]{figures/table_candidates.jpg}
@@ -153,7 +153,7 @@ C Zero123 & train @ 600 & 2.30 & -- \\
 \end{figure}
 
 \section{Comparison}
-\begin{table}[h]
+\begin{table}[H]
 \centering
 \caption{Comparison of the three asset generation paths.}
 \begin{tabular}{llll}
